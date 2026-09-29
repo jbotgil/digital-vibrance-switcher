@@ -30,25 +30,25 @@
 
 ## 🔥 The Problem
 
-You're in a game and the colors feel **washed out**. Or you're editing a photo and the saturation is **too high**. The routine is always the same:
+You're mid-game and the colors feel **washed out**. Or you're editing a photo and the saturation feels **off**. You know the drill:
 
-1. Open **NVIDIA Control Panel** _(10-20s loading)_
+1. Open **NVIDIA Control Panel** _(10-20 seconds just loading)_
 2. Navigate to "Adjust desktop color settings"
-3. Wait for the page to render _(another 5s)_
-4. Drag the **Digital Vibrance** slider
+3. Wait for it to render _(another 5 seconds)_
+4. Move the **Digital Vibrance** slider
 5. Click **"Apply"**
 6. Go back to what you were doing
 
-**It takes 20-30 seconds** for what should be a **one-click operation**.
+**20-30 seconds** for something that should take **one click**.
 
-But it's not just about speed — **different apps look better at different vibrance levels**. You might want:
+And it's not just about speed — **different apps look best at different vibrance levels**. Maybe:
 
-- 🎮 **Gaming**: 70-100% for vibrant, punchy colors
-- 🎬 **Movies/streaming**: 50-60% for natural skin tones
-- 📝 **Work/design**: 40-50% for accurate color representation
-- 🌙 **Night time**: lower vibrance to reduce eye strain
+- 🎮 **Gaming**: 70-100% for punchy, vibrant colors
+- 🎬 **Movies**: 50-60% for natural skin tones
+- 📝 **Work/design**: 40-50% for accurate colors
+- 🌙 **Night time**: lower vibrance so your eyes don't burn
 
-With Digital Vibrance Switcher, you can **set a profile per application** and let it **switch automatically** — no more manual tweaking every time you alt-tab between apps.
+With this tool, you **set a profile per app** and it **switches automatically** — no more manual tweaking every time you tab out.
 
 ## ✅ The Solution
 
@@ -169,25 +169,25 @@ MIT — see [LICENSE](LICENSE).
 
 ## 🔥 El Problema
 
-Estás jugando y los colores se ven **deslavados**. O estás editando una foto y la saturación es **demasiado alta**. La rutina es siempre la misma:
+Estás jugando y los colores se ven **apagados**. O estás editando una foto y la saturación **no termina de convencerte**. El ritual de siempre:
 
-1. Abrir el **Panel de Control de NVIDIA** _(10-20s cargando)_
-2. Navegar a "Ajustar configuración de color del escritorio"
-3. Esperar que cargue la página _(otros 5s)_
-4. Arrastrar el slider de **Digital Vibrance**
-5. Hacer clic en **"Aplicar"**
+1. Abrir el **Panel de Control de NVIDIA** _(10-20 segundos solo para cargar)_
+2. Ir a "Ajustar configuración de color del escritorio"
+3. Esperar a que cargue la página _(otros 5 segundos)_
+4. Mover el slider de **Digital Vibrance**
+5. Pulsar **"Aplicar"**
 6. Volver a lo que estabas haciendo
 
-**Tarda 20-30 segundos** para lo que debería ser **una operación de un solo clic**.
+**20-30 segundos** para algo que debería ser **un solo clic**.
 
-Pero no es solo velocidad — **cada aplicación se ve mejor con un nivel de vibrance diferente**. Por ejemplo:
+Y no es solo por rapidez — **cada aplicación se ve mejor con un vibrance diferente**:
 
-- 🎮 **Juegos**: 70-100% para colores vibrantes e intensos
-- 🎬 **Películas/streaming**: 50-60% para tonos de piel naturales
-- 📝 **Trabajo/diseño**: 40-50% para representación precisa del color
-- 🌙 **Por la noche**: vibrance más bajo para reducir la fatiga visual
+- 🎮 **Jugando**: 70-100% para colores intensos
+- 🎬 **Películas**: 50-60% para tonos de piel naturales
+- 📝 **Trabajo/diseño**: 40-50% para colores precisos
+- 🌙 **Por la noche**: vibrance bajo para no quemarte los ojos
 
-Con Digital Vibrance Switcher puedes **asignar un perfil por aplicación** y que **cambie automáticamente** — sin tener que ajustarlo manualmente cada vez que cambias de app.
+Con esta herramienta, **creas un perfil por app** y **cambia solo** cuando entras y sales.
 
 ## ✅ La Solución
 
