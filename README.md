@@ -264,6 +264,5 @@ MIT — ver [LICENSE](LICENSE).
 ---
 
 <div align="center">
-  <sub>Built with ❤️ because waiting for NVIDIA Control Panel is not an option.<br/>
-  Hecho con ❤️ porque esperar al Panel de Control de NVIDIA no es una opción.</sub>
+  <sub>MIT License · Windows 10/11 · .NET Framework 4.8</sub>
 </div>
