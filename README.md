@@ -41,6 +41,15 @@ You're in a game and the colors feel **washed out**. Or you're editing a photo a
 
 **It takes 20-30 seconds** for what should be a **one-click operation**.
 
+But it's not just about speed — **different apps look better at different vibrance levels**. You might want:
+
+- 🎮 **Gaming**: 70-100% for vibrant, punchy colors
+- 🎬 **Movies/streaming**: 50-60% for natural skin tones
+- 📝 **Work/design**: 40-50% for accurate color representation
+- 🌙 **Night time**: lower vibrance to reduce eye strain
+
+With Digital Vibrance Switcher, you can **set a profile per application** and let it **switch automatically** — no more manual tweaking every time you alt-tab between apps.
+
 ## ✅ The Solution
 
 **Digital Vibrance Switcher** talks directly to NVIDIA's driver API (`nvapi64.dll`) to change the value **instantly** — no Control Panel, no waiting, no clicking Apply.
@@ -170,6 +179,15 @@ Estás jugando y los colores se ven **deslavados**. O estás editando una foto y
 6. Volver a lo que estabas haciendo
 
 **Tarda 20-30 segundos** para lo que debería ser **una operación de un solo clic**.
+
+Pero no es solo velocidad — **cada aplicación se ve mejor con un nivel de vibrance diferente**. Por ejemplo:
+
+- 🎮 **Juegos**: 70-100% para colores vibrantes e intensos
+- 🎬 **Películas/streaming**: 50-60% para tonos de piel naturales
+- 📝 **Trabajo/diseño**: 40-50% para representación precisa del color
+- 🌙 **Por la noche**: vibrance más bajo para reducir la fatiga visual
+
+Con Digital Vibrance Switcher puedes **asignar un perfil por aplicación** y que **cambie automáticamente** — sin tener que ajustarlo manualmente cada vez que cambias de app.
 
 ## ✅ La Solución
 
