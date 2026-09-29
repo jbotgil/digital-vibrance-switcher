@@ -58,11 +58,17 @@ You're in a game and the colors feel **washed out**. Or you're editing a photo a
 | 🎚 **Precision slider** | Drag to any value from 0-100% with live preview |
 | ⚡ **Quick presets** | One-click: 40%, 50%, 60%, 70%, 80%, MAX |
 | ⌨️ **Global hotkeys** | `Ctrl+Alt+1/2/3/4` from **any app**, even fullscreen games |
-| 🖥 **System tray** | Minimizes to tray, accessible anytime |
+| 🖥 **System tray** | Minimizes to tray, dark-themed context menu |
 | 🚀 **Auto-start** | Launches with Windows, restores your last value |
-| 🎨 **Dark theme** | Modern, clean UI that respects your eyes |
-| 🔄 **Real-time feedback** | Visual arc indicator shows current value |
+| 🎨 **Dark theme** | Modern, clean UI with consistent dark palette |
+| 🔄 **Real-time feedback** | Circular arc indicator shows current value |
 | 📊 **Multi-monitor aware** | Detects all your NVIDIA displays |
+| 📝 **App profiles** | Per-application vibrance profiles with auto-switch |
+| 🎯 **Auto-switch** | Detects foreground app and switches vibrance instantly |
+| 🔍 **App Browse** | Built-in selector for installed apps (Steam, Epic, Riot, Valorant, etc.) with search and loading spinner |
+| 💾 **Default value** | Configurable fallback value when leaving a profiled app |
+| 🔎 **Fuzzy matching** | Profile "VALORANT" matches "VALORANT-Win64-Shipping" automatically |
+| 🌙 **Dark tray menu** | Context menu styled with dark theme, no more white column |
 
 ## ⌨️ Hotkeys
 
@@ -117,7 +123,7 @@ The change takes effect **immediately** — no driver reload, no display restart
 - ✅ Core NVAPI integration
 - ✅ Preset system (quick buttons)
 - ✅ Global hotkeys (`Ctrl+Alt+1/2/3/4`)
-- ✅ System tray with context menu
+- ✅ System tray with dark theme
 - ✅ Dark theme UI
 - ✅ Auto-start with Windows
 - ✅ Multi-monitor support
@@ -125,6 +131,10 @@ The change takes effect **immediately** — no driver reload, no display restart
 - ✅ Per-application profiles
 - ✅ Game detection & auto-switching
 - ✅ DDC/CI monitor control
+- ✅ App Browse picker with search and loading spinner
+- ✅ Configurable default vibrance value
+- ✅ Fuzzy profile matching (partial process name)
+- ✅ Dark tray context menu
 
 ## 🤝 Contributing
 
@@ -178,11 +188,17 @@ Estás jugando y los colores se ven **deslavados**. O estás editando una foto y
 | 🎚 **Slider de precisión** | Arrastra a cualquier valor de 0-100% con vista previa |
 | ⚡ **Presets rápidos** | Un clic: 40%, 50%, 60%, 70%, 80%, MAX |
 | ⌨️ **Atajos globales** | `Ctrl+Alt+1/2/3/4` desde **cualquier app**, incluso juegos a pantalla completa |
-| 🖥 **Bandeja del sistema** | Se minimiza a la bandeja, accesible en todo momento |
+| 🖥 **Bandeja del sistema** | Se minimiza a la bandeja, menú contextual con tema oscuro |
 | 🚀 **Auto-inicio** | Se inicia con Windows, restaura tu último valor |
-| 🎨 **Tema oscuro** | UI moderna y limpia que cuida tus ojos |
+| 🎨 **Tema oscuro** | UI moderna con paleta oscura consistente |
 | 🔄 **Feedback en tiempo real** | Indicador visual de arco con el valor actual |
 | 📊 **Multi-monitor** | Detecta todos tus displays NVIDIA |
+| 📝 **Perfiles por app** | Perfiles de vibrance por aplicación con cambio automático |
+| 🎯 **Auto-detección** | Detecta la app en primer plano y cambia el vibrance al instante |
+| 🔍 **Selector de apps** | Explorador integrado que encuentra juegos instalados (Steam, Epic, Riot, Valorant...) con búsqueda y spinner de carga |
+| 💾 **Valor por defecto** | Porcentaje configurable al que volver al salir de una app con perfil |
+| 🔎 **Coincidencia parcial** | El perfil "VALORANT" matchea automáticamente "VALORANT-Win64-Shipping" |
+| 🌙 **Menú oscuro** | Menú contextual de la bandeja sin la franja blanca molesta |
 
 ## ⌨️ Atajos de teclado
 
@@ -237,7 +253,7 @@ El cambio tiene efecto **inmediatamente** — sin recargar el driver, sin reinic
 - ✅ Integración NVAPI principal
 - ✅ Sistema de presets (botones rápidos)
 - ✅ Atajos globales (`Ctrl+Alt+1/2/3/4`)
-- ✅ Bandeja del sistema con menú contextual
+- ✅ Bandeja del sistema con menú oscuro
 - ✅ Interfaz de tema oscuro
 - ✅ Inicio automático con Windows
 - ✅ Soporte multi-monitor
@@ -245,6 +261,10 @@ El cambio tiene efecto **inmediatamente** — sin recargar el driver, sin reinic
 - ✅ Perfiles por aplicación
 - ✅ Detección de juegos y cambio automático
 - ✅ Control de monitor DDC/CI
+- ✅ Selector de apps instaladas con búsqueda y spinner
+- ✅ Valor por defecto configurable
+- ✅ Coincidencia parcial de nombres de proceso
+- ✅ Menú contextual oscuro sin franja blanca
 
 ## 🤝 Contribuciones
 
