@@ -9,11 +9,13 @@ namespace DigitalVibrance.Core
     {
         public string ProcessName { get; private set; }
         public string WindowTitle { get; private set; }
+        public string ExePath { get; private set; }
 
-        public AppSwitchEventArgs(string process, string title)
+        public AppSwitchEventArgs(string process, string title, string exePath)
         {
             ProcessName = process;
             WindowTitle = title;
+            ExePath = exePath;
         }
     }
 
@@ -32,6 +34,7 @@ namespace DigitalVibrance.Core
 
         static Timer _pollTimer;
         static string _lastProcess = "";
+        static string _lastExePath = "";
         static bool _wasRestored = true;
 
         public static void Start()
@@ -39,7 +42,7 @@ namespace DigitalVibrance.Core
             if (_pollTimer != null) return;
 
             _pollTimer = new Timer();
-            _pollTimer.Interval = 1000;
+            _pollTimer.Interval = 800;
             _pollTimer.Tick += OnPoll;
             _pollTimer.Start();
         }
@@ -59,17 +62,19 @@ namespace DigitalVibrance.Core
             IntPtr hwnd = GetForegroundWindow();
             if (hwnd == IntPtr.Zero) return;
 
-            string processName = GetProcessName(hwnd);
-            string windowTitle = GetWindowTitle(hwnd);
+            string exePath;
+            string processName = GetProcessName(hwnd, out exePath);
 
             if (string.IsNullOrEmpty(processName))
                 return;
 
-            if (processName != _lastProcess)
+            if (processName != _lastProcess || exePath != _lastExePath)
             {
                 _lastProcess = processName;
+                _lastExePath = exePath ?? "";
 
-                bool matched = ProfileManager.TryActivateProfile(processName);
+                // Capture the value BEFORE the profile changes it
+                bool matched = ProfileManager.TryActivateProfile(processName, exePath);
 
                 if (matched)
                 {
@@ -77,24 +82,26 @@ namespace DigitalVibrance.Core
                 }
                 else if (!_wasRestored && SettingsManager.Current.RestoreAfterApp)
                 {
-                    int def = SettingsManager.Current.LastVibrance;
-                    VibranceController.SetVibrance(def);
+                    VibranceController.SetVibrance(SettingsManager.Current.DefaultVibrance);
                     _wasRestored = true;
                 }
 
                 if (ForegroundAppChanged != null)
-                    ForegroundAppChanged(null, new AppSwitchEventArgs(processName, windowTitle));
+                    ForegroundAppChanged(null, new AppSwitchEventArgs(processName, GetWindowTitle(hwnd), exePath));
             }
         }
 
-        static string GetProcessName(IntPtr hwnd)
+        static string GetProcessName(IntPtr hwnd, out string exePath)
         {
+            exePath = "";
             try
             {
                 uint pid;
                 GetWindowThreadProcessId(hwnd, out pid);
                 using (var p = Process.GetProcessById((int)pid))
                 {
+                    exePath = "";
+                    try { exePath = p.MainModule.FileName; } catch { }
                     return p.ProcessName;
                 }
             }
@@ -114,6 +121,11 @@ namespace DigitalVibrance.Core
         public static string CurrentProcess
         {
             get { return _lastProcess; }
+        }
+
+        public static string CurrentExePath
+        {
+            get { return _lastExePath; }
         }
 
         public static bool IsRunning

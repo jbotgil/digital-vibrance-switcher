@@ -17,6 +17,7 @@ namespace DigitalVibrance.UI
 
         ModernCheckBox _startupCb, _hotkeyCb, _autoCb;
         NumericUpDown _speedBox;
+        NumericUpDown _defaultBox;
 
         ListBox _profileList;
         TextBox _profName, _profProc;
@@ -81,7 +82,7 @@ namespace DigitalVibrance.UI
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 9f));    // slider
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5f));  // gap
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 10f));   // presets
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 49f));   // settings + profiles
+            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 50f));   // settings + profiles
 
             tlp.Controls.Add(MkHeader(), 0, 0);
             tlp.Controls.Add(MkCircle(), 0, 2);
@@ -285,25 +286,38 @@ namespace DigitalVibrance.UI
             var p = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Surface, Padding = new Padding(10, 6, 8, 6) };
             p.Paint += (s, e) => { using (var pen = new Pen(Theme.Border, 1)) e.Graphics.DrawRectangle(pen, 0, 0, p.Width - 1, p.Height - 1); };
 
-            var inner = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 3, BackColor = Color.Transparent };
-            inner.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
-            inner.RowStyles.Add(new RowStyle(SizeType.Absolute, 26));
-            inner.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            // Compact vertical stack pinned to top — no stretching / big empty gaps
+            var inner = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+                AutoSize = true,
+                BackColor = Color.Transparent,
+                Padding = new Padding(0)
+            };
 
-            inner.Controls.Add(new Label { Text = "SETTINGS", Font = Theme.FontBold(7.5f), ForeColor = Theme.TextMuted, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft }, 0, 0);
+            inner.Controls.Add(new Label { Text = "SETTINGS", Font = Theme.FontBold(7.5f), ForeColor = Theme.TextMuted, BackColor = Color.Transparent, AutoSize = true, Height = 16 });
 
-            var spdRow = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.LeftToRight, WrapContents = false, BackColor = Color.Transparent, Height = 24 };
-            _speedBox = new NumericUpDown { Width = 52, Minimum = 0, Maximum = 10, Font = Theme.FontBold(12), ForeColor = Theme.Text, BackColor = Theme.Surface2, BorderStyle = BorderStyle.None, Margin = new Padding(0, 0, 4, 0) };
-            foreach (Control c in _speedBox.Controls) { c.BackColor = Theme.Surface2; c.ForeColor = Theme.Text; }
+            var spdRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, BackColor = Color.Transparent, AutoSize = true, Margin = new Padding(0, 2, 0, 0) };
+            _speedBox = new NumericUpDown { Width = 64, Height = 24, Minimum = 0, Maximum = 10, Font = Theme.FontBold(11), ForeColor = Theme.Text, BackColor = Theme.Surface3, BorderStyle = BorderStyle.FixedSingle, TextAlign = HorizontalAlignment.Center, Margin = new Padding(0, 1, 6, 0) };
+            foreach (Control c in _speedBox.Controls) { c.BackColor = Theme.Surface3; c.ForeColor = Theme.Text; }
             _speedBox.ValueChanged += (s, e) => { SettingsManager.Current.TransitionSpeed = (int)_speedBox.Value; SettingsManager.Save(); };
             spdRow.Controls.Add(_speedBox);
-            spdRow.Controls.Add(new Label { Text = "0=instant", Font = Theme.FontReg(6.5f), ForeColor = Theme.TextMuted, BackColor = Color.Transparent, AutoSize = true, Margin = new Padding(0, 5, 0, 0) });
-            inner.Controls.Add(spdRow, 0, 1);
+            spdRow.Controls.Add(new Label { Text = "transition", Font = Theme.FontReg(7f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, AutoSize = true, Margin = new Padding(0, 4, 0, 0) });
+            inner.Controls.Add(spdRow);
 
-            var chk = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, WrapContents = false, BackColor = Color.Transparent };
+            var defRow = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, BackColor = Color.Transparent, AutoSize = true, Margin = new Padding(0, 2, 0, 0) };
+            _defaultBox = new NumericUpDown { Width = 64, Height = 24, Minimum = 0, Maximum = 100, Font = Theme.FontBold(11), ForeColor = Theme.Text, BackColor = Theme.Surface3, BorderStyle = BorderStyle.FixedSingle, TextAlign = HorizontalAlignment.Center, Margin = new Padding(0, 1, 6, 0) };
+            foreach (Control c in _defaultBox.Controls) { c.BackColor = Theme.Surface3; c.ForeColor = Theme.Text; }
+            _defaultBox.ValueChanged += (s, e) => { SettingsManager.Current.DefaultVibrance = (int)_defaultBox.Value; SettingsManager.Save(); };
+            defRow.Controls.Add(_defaultBox);
+            defRow.Controls.Add(new Label { Text = "default %", Font = Theme.FontReg(7f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, AutoSize = true, Margin = new Padding(0, 4, 0, 0) });
+            inner.Controls.Add(defRow);
+
             _startupCb = new ModernCheckBox(); _startupCb.SetText("Run at startup");
             _startupCb.CheckedChanged += (s, e) => SettingsManager.SetAutoStart(_startupCb.Checked);
-            chk.Controls.Add(_startupCb);
+            inner.Controls.Add(_startupCb);
 
             _hotkeyCb = new ModernCheckBox(); _hotkeyCb.SetText("Hotkeys C+A+1..4");
             _hotkeyCb.CheckedChanged += (s, e) =>
@@ -311,7 +325,7 @@ namespace DigitalVibrance.UI
                 SettingsManager.Current.EnableHotkeys = _hotkeyCb.Checked; SettingsManager.Save();
                 if (_hotkeyCb.Checked) HotkeyManager.RegisterAll(Handle); else HotkeyManager.UnregisterAll(Handle);
             };
-            chk.Controls.Add(_hotkeyCb);
+            inner.Controls.Add(_hotkeyCb);
 
             _autoCb = new ModernCheckBox(); _autoCb.SetText("Auto-switch apps");
             _autoCb.CheckedChanged += (s, e) =>
@@ -319,9 +333,8 @@ namespace DigitalVibrance.UI
                 SettingsManager.Current.AutoDetectApps = _autoCb.Checked; SettingsManager.Save();
                 if (_autoCb.Checked) GameDetector.Start(); else GameDetector.Stop();
             };
-            chk.Controls.Add(_autoCb);
+            inner.Controls.Add(_autoCb);
 
-            inner.Controls.Add(chk, 0, 2);
             p.Controls.Add(inner);
             return p;
         }
@@ -513,6 +526,7 @@ namespace DigitalVibrance.UI
             _hotkeyCb.Checked = s.EnableHotkeys;
             _autoCb.Checked = s.AutoDetectApps;
             _speedBox.Value = s.TransitionSpeed;
+            _defaultBox.Value = s.DefaultVibrance;
         }
 
         void ClearHl()

@@ -38,6 +38,7 @@ namespace DigitalVibrance.Core
         public int TransitionSpeed { get; set; }
         public bool AutoDetectApps { get; set; }
         public bool RestoreAfterApp { get; set; }
+        public int DefaultVibrance { get; set; }
         public List<AppProfile> Profiles { get; set; }
 
         public AppSettings()
@@ -54,6 +55,7 @@ namespace DigitalVibrance.Core
             TransitionSpeed = 0;
             AutoDetectApps = false;
             RestoreAfterApp = true;
+            DefaultVibrance = 50;
             Profiles = new List<AppProfile>();
         }
     }
@@ -164,18 +166,41 @@ namespace DigitalVibrance.Core
             }
         }
 
-        public static AppProfile FindMatchingProfile(string processName)
+        public static AppProfile FindMatchingProfile(string processName, string exePath = null)
         {
             if (_current.Profiles == null || string.IsNullOrEmpty(processName))
                 return null;
+
+            string pathFile = string.IsNullOrEmpty(exePath) ? null : System.IO.Path.GetFileNameWithoutExtension(exePath);
 
             foreach (AppProfile p in _current.Profiles)
             {
                 if (!p.IsEnabled) continue;
                 if (string.IsNullOrEmpty(p.ProcessName)) continue;
 
+                string profileLower = p.ProcessName.ToLowerInvariant();
+
+                // Exact match by process name
                 if (string.Equals(p.ProcessName, processName, StringComparison.OrdinalIgnoreCase))
                     return p;
+
+                // Exact match by exe file name
+                if (pathFile != null &&
+                    string.Equals(p.ProcessName, pathFile, StringComparison.OrdinalIgnoreCase))
+                    return p;
+
+                // Partial match: profile "VALORANT" matches "VALORANT-Win64-Shipping"
+                string processLower = processName.ToLowerInvariant();
+                if (processLower.Contains(profileLower) || profileLower.Contains(processLower))
+                    return p;
+
+                // Partial match via exe path
+                if (pathFile != null)
+                {
+                    string pathLower = pathFile.ToLowerInvariant();
+                    if (pathLower.Contains(profileLower) || profileLower.Contains(pathLower))
+                        return p;
+                }
             }
             return null;
         }

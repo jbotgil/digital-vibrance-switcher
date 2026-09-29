@@ -67,9 +67,9 @@ namespace DigitalVibrance.Core
             SettingsManager.Save();
         }
 
-        public static bool TryActivateProfile(string processName)
+        public static bool TryActivateProfile(string processName, string exePath)
         {
-            var profile = SettingsManager.FindMatchingProfile(processName);
+            var profile = SettingsManager.FindMatchingProfile(processName, exePath);
             if (profile == null)
                 return false;
 
