@@ -71,12 +71,12 @@ namespace DigitalVibrance.UI
             };
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 7f));    // header
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5f));   // gap
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 22f));   // circle + %
+            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 24f));   // circle + %
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5f));  // gap
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 9f));    // slider
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5f));  // gap
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 11f));   // presets
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 45f));   // settings + profiles
+            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 43f));   // settings + profiles
 
             tlp.Controls.Add(MkHeader(), 0, 0);
             tlp.Controls.Add(MkCircle(), 0, 2);
@@ -132,11 +132,12 @@ namespace DigitalVibrance.UI
             _pctLabel = new Label
             {
                 Text = "50%",
-                Font = Theme.FontBold(26),
+                Font = Theme.FontBold(24),
                 ForeColor = Theme.Text,
                 BackColor = Color.Transparent,
                 AutoSize = false,
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                Anchor = AnchorStyles.None
             };
             p.Controls.Add(_pctLabel);
 
@@ -147,11 +148,19 @@ namespace DigitalVibrance.UI
         void ResizeValue(Panel p)
         {
             int cx = p.Width / 2;
-            int topY = Math.Max(2, (p.Height - _circleSz - 40) / 2);
-            _circleBox.Location = new Point(cx - _circleSz / 2, topY);
-            if (_circleBox.Bottom + 36 > p.Height)
-                _circleBox.Location = new Point(cx - _circleSz / 2, Math.Max(2, p.Height - _circleSz - 36));
-            _pctLabel.SetBounds(0, _circleBox.Bottom, p.Width, 36);
+            int lblH = 36;
+
+            // Círculo arriba, % justo debajo. Ambos SIEMPRE dentro del panel.
+            int circleTop = 2;
+            int maxCircleTop = Math.Max(2, p.Height - _circleSz - lblH);
+            circleTop = Math.Min(circleTop, maxCircleTop);
+
+            _circleBox.Location = new Point(cx - _circleSz / 2, circleTop);
+
+            int lblY = _circleBox.Bottom;
+            if (lblY + lblH > p.Height)
+                lblY = Math.Max(0, p.Height - lblH);
+            _pctLabel.SetBounds(0, lblY, p.Width, lblH);
         }
 
         // ─── SLIDER ─────────────────────────────────────────
