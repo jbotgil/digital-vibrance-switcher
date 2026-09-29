@@ -40,6 +40,33 @@ namespace DigitalVibrance.Core
             SettingsManager.RemoveProfile(index);
         }
 
+        public static bool ActivateProfile(int index)
+        {
+            var profiles = SettingsManager.Current.Profiles;
+            if (profiles == null || index < 0 || index >= profiles.Count)
+                return false;
+
+            var profile = profiles[index];
+            VibranceController.SetVibrance(profile.VibranceValue);
+
+            if (ProfileActivated != null)
+                ProfileActivated(null, new ProfileEventArgs(profile.Name, profile.VibranceValue));
+
+            return true;
+        }
+
+        public static void UpdateProfile(int index, string name, string processName, int vibrance)
+        {
+            var profiles = SettingsManager.Current.Profiles;
+            if (profiles == null || index < 0 || index >= profiles.Count)
+                return;
+
+            profiles[index].Name = name;
+            profiles[index].ProcessName = processName;
+            profiles[index].VibranceValue = vibrance;
+            SettingsManager.Save();
+        }
+
         public static bool TryActivateProfile(string processName)
         {
             var profile = SettingsManager.FindMatchingProfile(processName);

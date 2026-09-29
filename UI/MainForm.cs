@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Threading;
 using System.Windows.Forms;
 using DigitalVibrance.Core;
 
@@ -46,7 +47,11 @@ namespace DigitalVibrance.UI
 
             VibranceController.ValueChanged += (s, e) => SafeCall(() =>
             {
-                if (!IsDisposed) SyncAll(e.NewValue);
+                if (!IsDisposed)
+                {
+                    SyncAll(e.NewValue);
+                    _gpuLabel.Text = VibranceController.GetDisplayInfo().Replace("\n", "  ");
+                }
             });
             GameDetector.ForegroundAppChanged += (s, e) => SafeCall(() =>
             {
@@ -71,12 +76,12 @@ namespace DigitalVibrance.UI
             };
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 7f));    // header
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5f));   // gap
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 24f));   // circle + %
+            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 20f));   // circle + %
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5f));  // gap
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 9f));    // slider
             tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5f));  // gap
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 11f));   // presets
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 43f));   // settings + profiles
+            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 10f));   // presets
+            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 49f));   // settings + profiles
 
             tlp.Controls.Add(MkHeader(), 0, 0);
             tlp.Controls.Add(MkCircle(), 0, 2);
@@ -124,7 +129,7 @@ namespace DigitalVibrance.UI
                 Color c = Theme.ValueColor(v);
                 int d = _circleBox.Width;
                 using (var pen = new Pen(Theme.Surface3, 4)) g.DrawEllipse(pen, 2, 2, d - 4, d - 4);
-                using (var pen = new Pen(c, 4)) g.DrawArc(pen, 2, 2, d - 4, d - 4, 135, 270f * v / 100f);
+                using (var pen = new Pen(c, 4)) g.DrawArc(pen, 2, 2, d - 4, d - 4, 135, 360f * v / 100f);
                 using (var br = new SolidBrush(Theme.Bg)) g.FillEllipse(br, 8, 8, d - 16, d - 16);
             };
             p.Controls.Add(_circleBox);
@@ -328,8 +333,8 @@ namespace DigitalVibrance.UI
 
             var inner = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 3, BackColor = Color.Transparent };
             inner.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+            inner.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
             inner.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            inner.RowStyles.Add(new RowStyle(SizeType.Absolute, 90));
 
             inner.Controls.Add(new Label { Text = "PROFILES", Font = Theme.FontBold(7.5f), ForeColor = Theme.TextMuted, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft }, 0, 0);
 
@@ -351,6 +356,11 @@ namespace DigitalVibrance.UI
                     _profVal.Value = p2[idx].VibranceValue;
                 }
             };
+            _profileList.MouseDoubleClick += (s, e) =>
+            {
+                int idx = _profileList.SelectedIndex;
+                if (idx >= 0) ProfileManager.ActivateProfile(idx);
+            };
             listPanel.Controls.Add(_profileList);
 
             _profEmpty = new Label
@@ -362,25 +372,76 @@ namespace DigitalVibrance.UI
             listPanel.Controls.Add(_profEmpty);
             inner.Controls.Add(listPanel, 0, 1);
 
-            var editor = new Panel { Dock = DockStyle.Fill, BackColor = Color.Transparent };
+            var editor = new Panel { Dock = DockStyle.Fill, BackColor = Color.Transparent, Padding = new Padding(0, 4, 0, 0) };
             var eflp = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, WrapContents = false, BackColor = Color.Transparent };
 
-            eflp.Controls.Add(new Label { Text = "Name", Font = Theme.FontReg(6.5f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, Height = 10 });
-            _profName = new TextBox { Font = Theme.FontReg(8), ForeColor = Theme.Text, BackColor = Theme.Surface2, BorderStyle = BorderStyle.FixedSingle, Height = 18 };
+            eflp.Controls.Add(new Label { Text = "Name", Font = Theme.FontReg(7f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, Height = 14 });
+            _profName = new TextBox { Font = Theme.FontReg(8.5f), ForeColor = Theme.Text, BackColor = Theme.Surface2, BorderStyle = BorderStyle.FixedSingle, Height = 22 };
             eflp.Controls.Add(_profName);
 
-            eflp.Controls.Add(new Label { Text = "Process", Font = Theme.FontReg(6.5f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, Height = 10, Margin = new Padding(0, 1, 0, 0) });
-            _profProc = new TextBox { Font = Theme.FontReg(8), ForeColor = Theme.Text, BackColor = Theme.Surface2, BorderStyle = BorderStyle.FixedSingle, Height = 18 };
-            eflp.Controls.Add(_profProc);
+            eflp.Controls.Add(new Label { Text = "Process", Font = Theme.FontReg(7f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, Height = 14, Margin = new Padding(0, 4, 0, 0) });
 
-            eflp.Controls.Add(new Label { Text = "DV%", Font = Theme.FontReg(6.5f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, Height = 10, Margin = new Padding(0, 1, 0, 0) });
-            _profVal = new NumericUpDown { Minimum = 0, Maximum = 100, Value = 70, Width = 46, Font = Theme.FontBold(8.5f), ForeColor = Theme.Text, BackColor = Theme.Surface2, BorderStyle = BorderStyle.None };
+            var procRow = new TableLayoutPanel { ColumnCount = 2, RowCount = 1, BackColor = Color.Transparent, AutoSize = true };
+            procRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            procRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 64));
+            _profProc = new TextBox { Font = Theme.FontReg(8.5f), ForeColor = Theme.Text, BackColor = Theme.Surface2, BorderStyle = BorderStyle.FixedSingle, Height = 22, Dock = DockStyle.Fill };
+            var browseB = new Button { Text = "Browse", Font = Theme.FontBold(8), ForeColor = Theme.TextSec, BackColor = Theme.Surface2, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 1, BorderColor = Theme.Border }, Height = 22, Dock = DockStyle.Fill, Cursor = Cursors.Hand };
+            browseB.FlatAppearance.MouseOverBackColor = Theme.Surface3;
+            browseB.Click += (s, e) =>
+            {
+                using (var loading = new LoadingDialog("Scanning installed applications…"))
+                {
+                    InstalledAppScanner.AppEntry[] apps = null;
+                    var scanThread = new Thread(() =>
+                    {
+                        apps = InstalledAppScanner.Scan().ToArray();
+                    });
+                    scanThread.Start();
+
+                    loading.StartPosition = FormStartPosition.CenterScreen;
+                    loading.Show();
+
+                    // Keep the loading window pumping while scanning in background
+                    while (scanThread.IsAlive)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(20);
+                    }
+                    loading.Close();
+                }
+
+                using (var dlg = new AppPickerDialog())
+                {
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        _profProc.Text = dlg.SelectedProcess;
+                        if (string.IsNullOrEmpty(_profName.Text))
+                            _profName.Text = dlg.SelectedName;
+                    }
+                }
+            };
+            procRow.Controls.Add(_profProc, 0, 0);
+            procRow.Controls.Add(browseB, 1, 0);
+            eflp.Controls.Add(procRow);
+
+            eflp.Controls.Add(new Label { Text = "DV%", Font = Theme.FontReg(7f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, Height = 14, Margin = new Padding(0, 4, 0, 0) });
+            _profVal = new NumericUpDown { Minimum = 0, Maximum = 100, Value = 70, Width = 46, Font = Theme.FontBold(9f), ForeColor = Theme.Text, BackColor = Theme.Surface2, BorderStyle = BorderStyle.None };
             foreach (Control c in _profVal.Controls) { c.BackColor = Theme.Surface2; c.ForeColor = Theme.Text; }
             eflp.Controls.Add(_profVal);
 
-            var br = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, BackColor = Color.Transparent, Margin = new Padding(0, 2, 0, 0) };
+            var br = new FlowLayoutPanel { FlowDirection = FlowDirection.LeftToRight, WrapContents = false, BackColor = Color.Transparent, Margin = new Padding(0, 6, 0, 0) };
 
-            var addB = new Button { Text = "Add", Font = Theme.FontBold(7.5f), ForeColor = Color.White, BackColor = Theme.PrimaryDark, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 0 }, Size = new Size(36, 20), Cursor = Cursors.Hand, Margin = new Padding(0, 0, 2, 0) };
+            var playB = new Button { Text = "\u25B6", Font = Theme.FontBold(9), ForeColor = Color.White, BackColor = Theme.Success, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 0 }, Size = new Size(30, 24), Cursor = Cursors.Hand, Margin = new Padding(0, 0, 4, 0) };
+            playB.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, 220, 150);
+            new ToolTip().SetToolTip(playB, "Apply selected profile");
+            playB.Click += (s, e) =>
+            {
+                int idx = _profileList.SelectedIndex;
+                if (idx >= 0) ProfileManager.ActivateProfile(idx);
+            };
+            br.Controls.Add(playB);
+
+            var addB = new Button { Text = "Add", Font = Theme.FontBold(8), ForeColor = Color.White, BackColor = Theme.PrimaryDark, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 0 }, Size = new Size(36, 24), Cursor = Cursors.Hand, Margin = new Padding(0, 0, 4, 0) };
             addB.FlatAppearance.MouseOverBackColor = Theme.Primary;
             addB.Click += (s, e) =>
             {
@@ -392,21 +453,24 @@ namespace DigitalVibrance.UI
             };
             br.Controls.Add(addB);
 
-            var delB = new Button { Text = "Del", Font = Theme.FontBold(7.5f), ForeColor = Color.White, BackColor = Theme.Error, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 0 }, Size = new Size(30, 20), Cursor = Cursors.Hand, Margin = new Padding(0, 0, 2, 0) };
+            var saveB = new Button { Text = "Save", Font = Theme.FontBold(8), ForeColor = Color.White, BackColor = Theme.Warning, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 0 }, Size = new Size(40, 24), Cursor = Cursors.Hand, Margin = new Padding(0, 0, 4, 0) };
+            saveB.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 200, 90);
+            new ToolTip().SetToolTip(saveB, "Update selected profile");
+            saveB.Click += (s, e) =>
+            {
+                int idx = _profileList.SelectedIndex;
+                if (idx < 0) return;
+                string n = _profName.Text.Trim(), p3 = _profProc.Text.Trim().Replace(".exe", "");
+                if (string.IsNullOrEmpty(n) || string.IsNullOrEmpty(p3)) return;
+                ProfileManager.UpdateProfile(idx, n, p3, (int)_profVal.Value);
+                RefreshProfiles();
+            };
+            br.Controls.Add(saveB);
+
+            var delB = new Button { Text = "Del", Font = Theme.FontBold(8), ForeColor = Color.White, BackColor = Theme.Error, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 0 }, Size = new Size(32, 24), Cursor = Cursors.Hand, Margin = new Padding(0, 0, 4, 0) };
             delB.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 100, 120);
             delB.Click += (s, e) => { int idx = _profileList.SelectedIndex; if (idx >= 0) { ProfileManager.RemoveProfile(idx); RefreshProfiles(); } };
             br.Controls.Add(delB);
-
-            var detB = new Button { Text = "\u25B6", Font = Theme.FontBold(8.5f), ForeColor = Theme.TextSec, BackColor = Theme.Surface2, FlatStyle = FlatStyle.Flat, FlatAppearance = { BorderSize = 1, BorderColor = Theme.Border }, Size = new Size(20, 20), Cursor = Cursors.Hand };
-            detB.FlatAppearance.MouseOverBackColor = Theme.Surface3;
-            new ToolTip().SetToolTip(detB, "Detect app");
-            detB.Click += (s, e) =>
-            {
-                _profProc.Text = GameDetector.CurrentProcess;
-                if (!string.IsNullOrEmpty(_profProc.Text) && string.IsNullOrEmpty(_profName.Text))
-                    _profName.Text = _profProc.Text;
-            };
-            br.Controls.Add(detB);
 
             eflp.Controls.Add(br);
             editor.Controls.Add(eflp);

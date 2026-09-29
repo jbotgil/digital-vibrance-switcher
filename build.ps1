@@ -19,10 +19,13 @@ $Sources = @(
     "Core\SettingsManager.cs",
     "Core\ProfileManager.cs",
     "Core\GameDetector.cs",
+    "Core\InstalledAppScanner.cs",
     "Core\HotkeyManager.cs",
     "UI\ModernTheme.cs",
     "UI\ModernCheckBox.cs",
     "UI\ModernTrackBar.cs",
+    "UI\AppPickerDialog.cs",
+    "UI\LoadingDialog.cs",
     "UI\MainForm.cs",
     "UI\TrayManager.cs",
     "Properties\AssemblyInfo.cs"

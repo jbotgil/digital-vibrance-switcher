@@ -53,10 +53,13 @@
     <Compile Include="Core\SettingsManager.cs" />
     <Compile Include="Core\ProfileManager.cs" />
     <Compile Include="Core\GameDetector.cs" />
+    <Compile Include="Core\InstalledAppScanner.cs" />
     <Compile Include="Core\HotkeyManager.cs" />
     <Compile Include="UI\ModernTheme.cs" />
     <Compile Include="UI\ModernCheckBox.cs" />
     <Compile Include="UI\ModernTrackBar.cs" />
+    <Compile Include="UI\AppPickerDialog.cs" />
+    <Compile Include="UI\LoadingDialog.cs" />
     <Compile Include="UI\MainForm.cs" />
     <Compile Include="UI\TrayManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

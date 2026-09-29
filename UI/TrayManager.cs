@@ -10,6 +10,30 @@ namespace DigitalVibrance.UI
         static NotifyIcon _trayIcon;
         static MainForm _mainForm;
 
+        class DarkMenuRenderer : ToolStripProfessionalRenderer
+        {
+            public DarkMenuRenderer() : base(new DarkColorTable()) { }
+        }
+
+        class DarkColorTable : ProfessionalColorTable
+        {
+            public override Color MenuItemSelected { get { return Theme.Surface3; } }
+            public override Color MenuItemSelectedGradientBegin { get { return Theme.Surface3; } }
+            public override Color MenuItemSelectedGradientEnd { get { return Theme.Surface3; } }
+            public override Color MenuItemBorder { get { return Color.Transparent; } }
+            public override Color MenuBorder { get { return Theme.Border; } }
+            public override Color MenuItemPressedGradientBegin { get { return Theme.Surface3; } }
+            public override Color MenuItemPressedGradientEnd { get { return Theme.Surface3; } }
+            public override Color ToolStripDropDownBackground { get { return Theme.Surface; } }
+            public override Color ImageMarginGradientBegin { get { return Theme.Surface; } }
+            public override Color ImageMarginGradientMiddle { get { return Theme.Surface; } }
+            public override Color ImageMarginGradientEnd { get { return Theme.Surface; } }
+            public override Color SeparatorDark { get { return Theme.Border; } }
+            public override Color SeparatorLight { get { return Theme.Border; } }
+            public override Color CheckBackground { get { return Theme.Surface3; } }
+            public override Color CheckSelectedBackground { get { return Theme.Primary; } }
+        }
+
         public static void Initialize(MainForm form)
         {
             _mainForm = form;
@@ -39,6 +63,7 @@ namespace DigitalVibrance.UI
             var menu = new ContextMenuStrip();
             menu.BackColor = Theme.Surface;
             menu.ForeColor = Theme.Text;
+            menu.Renderer = new DarkMenuRenderer();
 
             int[] presets = { 40, 50, 60, 70, 80, 100 };
             foreach (int p in presets)
