@@ -20,188 +20,277 @@
 
 ---
 
-| English | Español |
-|---------|---------|
-| **Instant NVIDIA Digital Vibrance control — no more waiting for the Control Panel.** | **Controla el Digital Vibrance de tu GPU NVIDIA al instante. Olvídate del Panel de Control.** |
+> ⚙️ **Instant NVIDIA Digital Vibrance control — no more waiting for the Control Panel.**
+> ⚙️ **Controla el Digital Vibrance de tu GPU NVIDIA al instante. Olvídate del Panel de Control.**
 
 ---
 
-## 🔥 The Problem / El Problema
+# 🌐 Language — Idioma
 
-| English | Español |
-|---------|---------|
-| You're in a game and the colors feel **washed out**. Or you're editing a photo and the saturation is **too high**. The routine is always the same: | Estás jugando y los colores se ven **deslavados**. O estás editando una foto y la saturación es **demasiado alta**. La rutina es siempre la misma: |
-| 1. Open **NVIDIA Control Panel** _(10-20s loading)_ | 1. Abrir el **Panel de Control de NVIDIA** _(10-20s cargando)_ |
-| 2. Navigate to "Adjust desktop color settings" | 2. Navegar a "Ajustar configuración de color del escritorio" |
-| 3. Wait for the page to render _(another 5s)_ | 3. Esperar que cargue la página _(otros 5s)_ |
-| 4. Drag the **Digital Vibrance** slider | 4. Arrastrar el slider de **Digital Vibrance** |
-| 5. Click **"Apply"** | 5. Hacer clic en **"Aplicar"** |
-| 6. Go back to what you were doing | 6. Volver a lo que estabas haciendo |
-| **It takes 20-30 seconds** for what should be a **one-click operation**. | **Tarda 20-30 segundos** para lo que debería ser **una operación de un solo clic**. |
+This README is available in two languages. Use the tabs below.
+Este README está disponible en dos idiomas. Usa las pestañas de abajo.
 
-## ✅ The Solution / La Solución
+<div class="lang-tabs" markdown="1">
 
-| English | Español |
-|---------|---------|
-| **Digital Vibrance Switcher** talks directly to NVIDIA's driver API (`nvapi64.dll`) to change the value **instantly** — no Control Panel, no waiting, no clicking Apply. | **Digital Vibrance Switcher** se comunica directamente con la API del driver NVIDIA (`nvapi64.dll`) para cambiar el valor **al instante** — sin Panel de Control, sin esperas, sin hacer clic en Aplicar. |
+<input type="radio" id="tab-en" name="lang" checked/>
+<label for="tab-en">🇬🇧 English</label>
+<input type="radio" id="tab-es" name="lang"/>
+<label for="tab-es">🇪🇸 Español</label>
 
-| Task | NVIDIA CP | **This app** | **Esta app** |
-|------|-----------|-------------|-------------|
-| Change vibrance / Cambiar vibrance | ~25 seg | ⚡ **instant / instantáneo** |
-| Switch presets / Cambiar preset | navegación completa | **1 clic / 1 clic** |
-| From any app / Desde cualquier app | alt+tab → wait/espera | **global hotkey / atajo global** |
+<div class="tab-en">
 
 ---
 
-## ✨ Features / Características
+## 🔥 The Problem
 
-| English | Español |
-|---------|---------|
-| 🎚 **Precision slider** — Drag to any value from 0-100% with live preview | 🎚 **Slider de precisión** — Arrastra a cualquier valor de 0-100% con vista previa |
-| ⚡ **Quick presets** — One-click: 40%, 50%, 60%, 70%, 80%, MAX | ⚡ **Presets rápidos** — Un clic: 40%, 50%, 60%, 70%, 80%, MAX |
-| ⌨️ **Global hotkeys** — `Ctrl+Alt+1/2/3/4` from **any app**, even fullscreen games | ⌨️ **Atajos globales** — `Ctrl+Alt+1/2/3/4` desde **cualquier app**, incluso juegos en pantalla completa |
-| 🖥 **System tray** — Minimizes to tray, accessible anytime | 🖥 **Bandeja del sistema** — Se minimiza a la bandeja, accesible en todo momento |
-| 🚀 **Auto-start** — Launches with Windows, restores your last value | 🚀 **Auto-inicio** — Se inicia con Windows, restaura tu último valor |
-| 🎨 **Dark theme** — Modern, clean UI that respects your eyes | 🎨 **Tema oscuro** — UI moderna y limpia que cuida tus ojos |
-| 🔄 **Real-time feedback** — Visual arc indicator shows current value | 🔄 **Feedback en tiempo real** — Indicador visual de arco con el valor actual |
-| 📊 **Multi-monitor aware** — Detects all your NVIDIA displays | 📊 **Multi-monitor** — Detecta todos tus displays NVIDIA |
+You're in a game and the colors feel **washed out**. Or you're editing a photo and the saturation is **too high**. The routine is always the same:
 
----
+1. Open **NVIDIA Control Panel** _(10-20s loading)_
+2. Navigate to "Adjust desktop color settings"
+3. Wait for the page to render _(another 5s)_
+4. Drag the **Digital Vibrance** slider
+5. Click **"Apply"**
+6. Go back to what you were doing
 
-## ⌨️ Hotkeys / Atajos de teclado
+**It takes 20-30 seconds** for what should be a **one-click operation**.
 
-| English | Español |
-|---------|---------|
-| Work **globally** — in games, fullscreen apps, anywhere. Change vibrance without even tabbing out. | Funcionan **globalmente** — en juegos, apps a pantalla completa, en cualquier lugar. Cambia el vibrance sin ni siquiera salir de la app. |
+## ✅ The Solution
 
-| Keys / Teclas | Action / Acción |
-|---------------|-----------------|
+**Digital Vibrance Switcher** talks directly to NVIDIA's driver API (`nvapi64.dll`) to change the value **instantly** — no Control Panel, no waiting, no clicking Apply.
+
+| Task | NVIDIA CP | **This app** |
+|------|-----------|--------------|
+| Change vibrance | ~25 sec | ⚡ **instant** |
+| Switch presets | full navigation | **1 click** |
+| From any app | alt+tab → wait | **global hotkey** |
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 🎚 **Precision slider** | Drag to any value from 0-100% with live preview |
+| ⚡ **Quick presets** | One-click: 40%, 50%, 60%, 70%, 80%, MAX |
+| ⌨️ **Global hotkeys** | `Ctrl+Alt+1/2/3/4` from **any app**, even fullscreen games |
+| 🖥 **System tray** | Minimizes to tray, accessible anytime |
+| 🚀 **Auto-start** | Launches with Windows, restores your last value |
+| 🎨 **Dark theme** | Modern, clean UI that respects your eyes |
+| 🔄 **Real-time feedback** | Visual arc indicator shows current value |
+| 📊 **Multi-monitor aware** | Detects all your NVIDIA displays |
+
+## ⌨️ Hotkeys
+
+Work **globally** — in games, fullscreen apps, anywhere. Change vibrance without even tabbing out.
+
+| Keys | Action |
+|------|--------|
 | `Ctrl` + `Alt` + `1` | **50%** |
 | `Ctrl` + `Alt` + `2` | **60%** |
 | `Ctrl` + `Alt` + `3` | **70%** |
 | `Ctrl` + `Alt` + `4` | **80%** |
 
----
+## 📦 Installation
 
-## 📦 Installation / Instalación
+**Quick start:**
+1. Download the latest `DigitalVibrance.exe` from [Releases](https://github.com/jbotgil/digital-vibrance-switcher/releases)
+2. **Double-click** the `.exe` — no installation needed
+3. The app opens and **immediately applies** the last used vibrance value
+4. Use the **slider** or click a **preset** to change
+5. Close the window → it **minimizes to tray** (it keeps running)
+6. To reopen: **double-click the tray icon** or right-click → "Show Window"
+7. To exit completely: right-click tray icon → **"Exit"**
 
-| English | Español |
-|---------|---------|
-| **Quick start** | **Inicio rápido** |
-| 1. Download the latest `DigitalVibrance.exe` from [Releases](https://github.com/user/digital-vibrance-switcher/releases) | 1. Descarga el último `DigitalVibrance.exe` desde [Releases](https://github.com/user/digital-vibrance-switcher/releases) |
-| 2. **Double-click** the `.exe` — no installation needed | 2. **Haz doble clic** en el `.exe` — no necesita instalación |
-| 3. The app opens and **immediately applies** the last used vibrance value | 3. La app se abre y **aplica inmediatamente** el último valor usado |
-| 4. Use the **slider** or click a **preset** (40%, 50%, 60%, 70%, 80%, MAX) to change | 4. Usa el **slider** o haz clic en un **preset** (40%, 50%, 60%, 70%, 80%, MAX) |
-| 5. Close the window → it **minimizes to tray** (it keeps running) | 5. Cierra la ventana → se **minimiza a la bandeja** (sigue funcionando) |
-| 6. To reopen: **double-click the tray icon** or right-click → "Show Window" | 6. Para reabrir: **doble clic en el icono de la bandeja** o clic derecho → "Show Window" |
-| 7. To exit completely: right-click tray icon → **"Exit"** | 7. Para salir: clic derecho en la bandeja → **"Exit"** |
-| The app **remembers** your last value and restores it on next launch. | La app **recuerda** tu último valor y lo restaura al siguiente inicio. |
+The app **remembers** your last value and restores it on next launch.
 
-### Requirements / Requisitos
+### Requirements
+- **Windows 10 or 11** (64-bit)
+- **NVIDIA GPU** with drivers installed
+- **nvapi64.dll** (included with NVIDIA drivers)
+- [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 
-| English | Español |
-|---------|---------|
-| **Windows 10 or 11** (64-bit) | **Windows 10 u 11** (64 bits) |
-| **NVIDIA GPU** with drivers installed | **GPU NVIDIA** con drivers instalados |
-| **nvapi64.dll** (included with NVIDIA drivers) | **nvapi64.dll** (incluida con los drivers NVIDIA) |
-| [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) (usually pre-installed) | [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) (generalmente pre-instalado) |
-
-### Build from source / Compilar desde el código
-
+### Build from source
 ```bash
-git clone https://github.com/yourname/digital-vibrance-switcher.git
+git clone https://github.com/jbotgil/digital-vibrance-switcher.git
 cd digital-vibrance-switcher
-
-# Option A: Using MSBuild (Visual Studio Build Tools required)
-# Opción A: Usando MSBuild (requiere Visual Studio Build Tools)
 msbuild DigitalVibranceSwitcher.csproj /p:Configuration=Release /p:Platform=x64
-
-# Option B: Using csc.exe directly
-# Opción B: Usando csc.exe directamente
-csc -nologo -platform:x64 -target:winexe -out:DigitalVibrance.exe ^
-    -reference:System.dll -reference:System.Drawing.dll ^
-    -reference:System.Windows.Forms.dll -reference:System.Runtime.Serialization.dll ^
-    Program.cs Native\NvApi.cs Core\VibranceController.cs Core\SettingsManager.cs ^
-    Core\HotkeyManager.cs UI\ModernTheme.cs UI\ModernTrackBar.cs UI\MainForm.cs UI\TrayManager.cs
 ```
 
+## 🔧 How It Works
+
+The app uses **P/Invoke** to call NVIDIA's proprietary API (`nvapi64.dll`) directly:
+1. **QueryInterface** → get function pointers for each NVAPI function
+2. **NvAPI_Initialize** → establish a session with the driver
+3. **NvAPI_EnumPhysicalGPUs** → enumerate available NVIDIA GPUs
+4. **NvAPI_GetDVCInfoEx** → read current Digital Vibrance range/values
+5. **NvAPI_SetDVCInfoEx** → write new Digital Vibrance value
+
+The change takes effect **immediately** — no driver reload, no display restart, no "Apply" button.
+
+## 📋 Project Status
+
+- ✅ Core NVAPI integration
+- ✅ Preset system (quick buttons)
+- ✅ Global hotkeys (`Ctrl+Alt+1/2/3/4`)
+- ✅ System tray with context menu
+- ✅ Dark theme UI
+- ✅ Auto-start with Windows
+- ✅ Multi-monitor support
+- ✅ Smooth transitions (animated value changes)
+- ✅ Per-application profiles
+- ✅ Game detection & auto-switching
+- ✅ DDC/CI monitor control
+
+## 🤝 Contributing
+
+Contributions are welcome! Open an issue or submit a PR.
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/amazing-idea`)
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## 📄 License
+
+MIT — see [LICENSE](LICENSE).
+
+</div>
+
+<div class="tab-es">
+
 ---
 
-## 🏗 Architecture / Arquitectura
+## 🔥 El Problema
 
+Estás jugando y los colores se ven **deslavados**. O estás editando una foto y la saturación es **demasiado alta**. La rutina es siempre la misma:
+
+1. Abrir el **Panel de Control de NVIDIA** _(10-20s cargando)_
+2. Navegar a "Ajustar configuración de color del escritorio"
+3. Esperar que cargue la página _(otros 5s)_
+4. Arrastrar el slider de **Digital Vibrance**
+5. Hacer clic en **"Aplicar"**
+6. Volver a lo que estabas haciendo
+
+**Tarda 20-30 segundos** para lo que debería ser **una operación de un solo clic**.
+
+## ✅ La Solución
+
+**Digital Vibrance Switcher** se comunica directamente con la API del driver NVIDIA (`nvapi64.dll`) para cambiar el valor **al instante** — sin Panel de Control, sin esperas, sin hacer clic en Aplicar.
+
+| Tarea | NVIDIA CP | **Esta app** |
+|-------|-----------|--------------|
+| Cambiar vibrance | ~25 seg | ⚡ **instantáneo** |
+| Cambiar preset | navegación completa | **1 clic** |
+| Desde cualquier app | alt+tab → espera | **atajo global** |
+
+## ✨ Características
+
+| Característica | Descripción |
+|----------------|-------------|
+| 🎚 **Slider de precisión** | Arrastra a cualquier valor de 0-100% con vista previa |
+| ⚡ **Presets rápidos** | Un clic: 40%, 50%, 60%, 70%, 80%, MAX |
+| ⌨️ **Atajos globales** | `Ctrl+Alt+1/2/3/4` desde **cualquier app**, incluso juegos a pantalla completa |
+| 🖥 **Bandeja del sistema** | Se minimiza a la bandeja, accesible en todo momento |
+| 🚀 **Auto-inicio** | Se inicia con Windows, restaura tu último valor |
+| 🎨 **Tema oscuro** | UI moderna y limpia que cuida tus ojos |
+| 🔄 **Feedback en tiempo real** | Indicador visual de arco con el valor actual |
+| 📊 **Multi-monitor** | Detecta todos tus displays NVIDIA |
+
+## ⌨️ Atajos de teclado
+
+Funcionan **globalmente** — en juegos, apps a pantalla completa, en cualquier lugar. Cambia el vibrance sin ni siquiera salir de la app.
+
+| Teclas | Acción |
+|--------|--------|
+| `Ctrl` + `Alt` + `1` | **50%** |
+| `Ctrl` + `Alt` + `2` | **60%** |
+| `Ctrl` + `Alt` + `3` | **70%** |
+| `Ctrl` + `Alt` + `4` | **80%** |
+
+## 📦 Instalación
+
+**Inicio rápido:**
+1. Descarga el último `DigitalVibrance.exe` desde [Releases](https://github.com/jbotgil/digital-vibrance-switcher/releases)
+2. **Haz doble clic** en el `.exe` — no necesita instalación
+3. La app se abre y **aplica inmediatamente** el último valor usado
+4. Usa el **slider** o haz clic en un **preset** para cambiar
+5. Cierra la ventana → se **minimiza a la bandeja** (sigue funcionando)
+6. Para reabrir: **doble clic en el icono de la bandeja** o clic derecho → "Show Window"
+7. Para salir: clic derecho en la bandeja → **"Exit"**
+
+La app **recuerda** tu último valor y lo restaura al siguiente inicio.
+
+### Requisitos
+- **Windows 10 u 11** (64 bits)
+- **GPU NVIDIA** con drivers instalados
+- **nvapi64.dll** (incluida con los drivers NVIDIA)
+- [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+
+### Compilar desde el código
+```bash
+git clone https://github.com/jbotgil/digital-vibrance-switcher.git
+cd digital-vibrance-switcher
+msbuild DigitalVibranceSwitcher.csproj /p:Configuration=Release /p:Platform=x64
 ```
-DigitalVibranceSwitcher/
-├── Program.cs                  # Entry point / Punto de entrada
-├── Native/
-│   └── NvApi.cs                # NVAPI P/Invoke bindings / Enlaces NVAPI
-├── Core/
-│   ├── VibranceController.cs   # Business logic / Lógica de negocio
-│   ├── SettingsManager.cs      # JSON preferences / Preferencias JSON
-│   └── HotkeyManager.cs        # Global hotkeys / Atajos globales
-├── UI/
-│   ├── ModernTheme.cs          # Color palette & typography / Paleta y tipografía
-│   ├── ModernTrackBar.cs       # Custom slider / Slider personalizado
-│   ├── MainForm.cs             # Main window / Ventana principal
-│   └── TrayManager.cs          # System tray / Bandeja del sistema
-├── Properties/
-│   └── AssemblyInfo.cs         # Version metadata / Metadatos de versión
-├── build.bat / build.ps1       # Build scripts / Scripts de compilación
-├── app.manifest                # DPI / Windows compatibility
-├── DigitalVibranceSwitcher.csproj
-├── LICENSE
-└── README.md
-```
 
----
+## 🔧 Cómo funciona
 
-## 🔧 How It Works / Cómo funciona
+La app usa **P/Invoke** para llamar directamente a la API propietaria de NVIDIA (`nvapi64.dll`):
+1. **QueryInterface** → obtener punteros a cada función NVAPI
+2. **NvAPI_Initialize** → establecer sesión con el driver
+3. **NvAPI_EnumPhysicalGPUs** → enumerar las GPUs NVIDIA disponibles
+4. **NvAPI_GetDVCInfoEx** → leer rango/valores actuales de Digital Vibrance
+5. **NvAPI_SetDVCInfoEx** → escribir el nuevo valor de Digital Vibrance
 
-| English | Español |
-|---------|---------|
-| The app uses **P/Invoke** to call NVIDIA's proprietary API (`nvapi64.dll`) directly: | La app usa **P/Invoke** para llamar directamente a la API propietaria de NVIDIA (`nvapi64.dll`): |
-| 1. **QueryInterface** → get function pointers for each NVAPI function | 1. **QueryInterface** → obtener punteros a cada función NVAPI |
-| 2. **NvAPI_Initialize** → establish a session with the driver | 2. **NvAPI_Initialize** → establecer sesión con el driver |
-| 3. **NvAPI_EnumPhysicalGPUs** → enumerate available NVIDIA GPUs | 3. **NvAPI_EnumPhysicalGPUs** → enumerar las GPUs NVIDIA disponibles |
-| 4. **NvAPI_GetDVCInfoEx** → read current Digital Vibrance range/values | 4. **NvAPI_GetDVCInfoEx** → leer rango/valores actuales de Digital Vibrance |
-| 5. **NvAPI_SetDVCInfoEx** → write new Digital Vibrance value | 5. **NvAPI_SetDVCInfoEx** → escribir el nuevo valor de Digital Vibrance |
-| The change takes effect **immediately** — no driver reload, no display restart, no "Apply" button. | El cambio tiene efecto **inmediatamente** — sin recargar el driver, sin reiniciar el display, sin botón "Aplicar". |
+El cambio tiene efecto **inmediatamente** — sin recargar el driver, sin reiniciar el display, sin botón "Aplicar".
 
----
+## 📋 Estado del proyecto
 
-## 📋 Project Status / Estado del proyecto
+- ✅ Integración NVAPI principal
+- ✅ Sistema de presets (botones rápidos)
+- ✅ Atajos globales (`Ctrl+Alt+1/2/3/4`)
+- ✅ Bandeja del sistema con menú contextual
+- ✅ Interfaz de tema oscuro
+- ✅ Inicio automático con Windows
+- ✅ Soporte multi-monitor
+- ✅ Transiciones suaves (cambios animados)
+- ✅ Perfiles por aplicación
+- ✅ Detección de juegos y cambio automático
+- ✅ Control de monitor DDC/CI
 
-| English | Español |
-|---------|---------|
-| ✅ Core NVAPI integration | ✅ Integración NVAPI principal |
-| ✅ Preset system (quick buttons) | ✅ Sistema de presets (botones rápidos) |
-| ✅ Global hotkeys (`Ctrl+Alt+1/2/3/4`) | ✅ Atajos globales (`Ctrl+Alt+1/2/3/4`) |
-| ✅ System tray with context menu | ✅ Bandeja del sistema con menú contextual |
-| ✅ Dark theme UI | ✅ Interfaz de tema oscuro |
-| ✅ Auto-start with Windows | ✅ Inicio automático con Windows |
-| ✅ Multi-monitor support | ✅ Soporte multi-monitor |
-| ✅ Smooth transitions (animated value changes) | ✅ Transiciones suaves (cambios animados) |
-| ✅ Per-application profiles | ✅ Perfiles por aplicación |
-| ✅ Game detection & auto-switching | ✅ Detección de juegos y cambio automático |
-| ✅ DDC/CI monitor control | ✅ Control de monitor DDC/CI |
+## 🤝 Contribuciones
 
----
+¡Las contribuciones son bienvenidas! Abre un issue o envía un PR.
+1. Haz fork del repositorio
+2. Crea tu rama de funcionalidad (`git checkout -b feature/amazing-idea`)
+3. Haz commit de tus cambios
+4. Sube los cambios
+5. Abre un Pull Request
 
-## 🤝 Contributing / Contribuciones
+## 📄 Licencia
 
-| English | Español |
-|---------|---------|
-| Contributions are welcome! Open an issue or submit a PR. | ¡Las contribuciones son bienvenidas! Abre un issue o envía un PR. |
-| 1. Fork the repo / Haz fork del repositorio | 2. Create your feature branch / Crea tu rama de funcionalidad |
-| 3. Commit your changes / Haz commit de tus cambios | 4. Push to the branch / Sube los cambios |
-| 5. Open a Pull Request / Abre un Pull Request | |
+MIT — ver [LICENSE](LICENSE).
 
----
+</div>
 
-## 📄 License / Licencia
+</div>
 
-| English | Español |
-|---------|---------|
-| MIT — see [LICENSE](LICENSE). | MIT — ver [LICENSE](LICENSE). |
+<style>
+.lang-tabs input[type=radio]{display:none}
+.lang-tabs input#tab-en:checked ~ .tab-es{display:none}
+.lang-tabs input#tab-es:checked ~ .tab-en{display:none}
+.lang-tabs label{
+  display:inline-block; padding:6px 16px; margin-right:4px;
+  cursor:pointer; border:1px solid #d0d7de; border-bottom:none;
+  border-radius:6px 6px 0 0; font-weight:600; background:#f6f8fa;
+  position:relative; top:1px;
+}
+.lang-tabs input#tab-en:checked ~ label[for=tab-en],
+.lang-tabs input#tab-es:checked ~ label[for=tab-es]{
+  background:#ffffff; border-color:#d0d7de; color:#0969da;
+}
+.lang-tabs > div{
+  border:1px solid #d0d7de; border-radius:0 6px 6px 6px; padding:16px;
+}
+</style>
 
 ---
 
