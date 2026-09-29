@@ -16,10 +16,6 @@
   <img src="docs/screenshot-main.png" alt="Main UI Screenshot" width="420"/>
 </div>
 
-<br/>
-
----
-
 > ⚙️ **Instant NVIDIA Digital Vibrance control — no more waiting for the Control Panel.**
 > ⚙️ **Controla el Digital Vibrance de tu GPU NVIDIA al instante. Olvídate del Panel de Control.**
 
@@ -27,17 +23,8 @@
 
 # 🌐 Language — Idioma
 
-This README is available in two languages. Use the tabs below.
-Este README está disponible en dos idiomas. Usa las pestañas de abajo.
-
-<div class="lang-tabs" markdown="1">
-
-<input type="radio" id="tab-en" name="lang" checked/>
-<label for="tab-en">🇬🇧 English</label>
-<input type="radio" id="tab-es" name="lang"/>
-<label for="tab-es">🇪🇸 Español</label>
-
-<div class="tab-en">
+<details open>
+<summary>🇬🇧 English — click for English version / clic para la versión en inglés</summary>
 
 ---
 
@@ -152,9 +139,12 @@ Contributions are welcome! Open an issue or submit a PR.
 
 MIT — see [LICENSE](LICENSE).
 
-</div>
+</details>
 
-<div class="tab-es">
+<br/>
+
+<details>
+<summary>🇪🇸 Español — haz clic para la versión en español / click for Spanish version</summary>
 
 ---
 
@@ -269,28 +259,7 @@ El cambio tiene efecto **inmediatamente** — sin recargar el driver, sin reinic
 
 MIT — ver [LICENSE](LICENSE).
 
-</div>
-
-</div>
-
-<style>
-.lang-tabs input[type=radio]{display:none}
-.lang-tabs input#tab-en:checked ~ .tab-es{display:none}
-.lang-tabs input#tab-es:checked ~ .tab-en{display:none}
-.lang-tabs label{
-  display:inline-block; padding:6px 16px; margin-right:4px;
-  cursor:pointer; border:1px solid #d0d7de; border-bottom:none;
-  border-radius:6px 6px 0 0; font-weight:600; background:#f6f8fa;
-  position:relative; top:1px;
-}
-.lang-tabs input#tab-en:checked ~ label[for=tab-en],
-.lang-tabs input#tab-es:checked ~ label[for=tab-es]{
-  background:#ffffff; border-color:#d0d7de; color:#0969da;
-}
-.lang-tabs > div{
-  border:1px solid #d0d7de; border-radius:0 6px 6px 6px; padding:16px;
-}
-</style>
+</details>
 
 ---
 
