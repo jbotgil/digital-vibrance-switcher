@@ -15,9 +15,9 @@ set REFS=-reference:System.dll -reference:System.Core.dll -reference:System.Draw
     Core\GameDetector.cs ^
     Core\InstalledAppScanner.cs ^
     Core\HotkeyManager.cs ^
-    UI\ModernTheme.cs ^
-    UI\ModernCheckBox.cs ^
-    UI\ModernTrackBar.cs ^
+    UI\Theme.cs ^
+    UI\ToggleSwitch.cs ^
+    UI\SliderBar.cs ^
     UI\AppPickerDialog.cs ^
     UI\LoadingDialog.cs ^
     UI\MainForm.cs ^

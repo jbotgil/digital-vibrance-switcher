@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace DigitalVibrance.UI
 {
-    class ModernCheckBox : Control
+    class ToggleSwitch : Control
     {
         bool _checked;
         bool _hovered;
@@ -27,7 +27,7 @@ namespace DigitalVibrance.UI
             }
         }
 
-        public ModernCheckBox()
+        public ToggleSwitch()
         {
             SetStyle(ControlStyles.SupportsTransparentBackColor |
                      ControlStyles.AllPaintingInWmPaint |

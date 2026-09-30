@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace DigitalVibrance.UI
 {
-    class ModernTrackBar : Control
+    class SliderBar : Control
     {
         int _value, _min, _max;
         bool _dragging, _hovered;
@@ -25,7 +25,7 @@ namespace DigitalVibrance.UI
         public int Minimum { get { return _min; } set { _min = value; Invalidate(); } }
         public int Maximum { get { return _max; } set { _max = value; Invalidate(); } }
 
-        public ModernTrackBar()
+        public SliderBar()
         {
             _min = 0; _max = 100; _value = 50;
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint |
@@ -42,11 +42,9 @@ namespace DigitalVibrance.UI
             int trackH = 6, trackY = Height / 2 - trackH / 2;
             _trackRect = new Rectangle(8, trackY, Width - 16, trackH);
 
-            // Track bg
             using (var br = new SolidBrush(Theme.Surface3))
                 g.FillRound(br, _trackRect, 3);
 
-            // Track fill
             float pct = (float)(_value - _min) / (_max - _min);
             int fillW = (int)((_trackRect.Width - 4) * pct);
             Color fillColor = Theme.ValueColor(_value);
@@ -57,7 +55,6 @@ namespace DigitalVibrance.UI
                     g.FillRound(br, fillR, 2);
             }
 
-            // Thumb
             int thumbS = _hovered || _dragging ? 18 : 14;
             int thumbX = _trackRect.X + 2 + Math.Max(0, fillW - thumbS / 2);
             int thumbY = _trackRect.Y + _trackRect.Height / 2 - thumbS / 2;
@@ -69,7 +66,6 @@ namespace DigitalVibrance.UI
                 g.DrawEllipse(pen, thumbR);
             }
 
-            // Min/max labels
             using (var br = new SolidBrush(Theme.TextMuted))
             using (var f = new Font("Segoe UI", 7.5f))
             {

@@ -9,20 +9,20 @@ namespace DigitalVibrance.UI
 {
     class MainForm : Form
     {
-        ModernTrackBar _slider;
+        SliderBar _slider;
         NumericUpDown _numBox;
         Button[] _presetBtns;
         Panel _circleBox;
         Label _pctLabel;
 
-        ModernCheckBox _startupCb, _hotkeyCb, _autoCb;
+        ToggleSwitch _startupCb, _hotkeyCb, _autoCb;
         NumericUpDown _speedBox;
         NumericUpDown _defaultBox;
 
         ListBox _profileList;
         TextBox _profName, _profProc;
         NumericUpDown _profVal;
-        ModernCheckBox _profEnabled;
+        ToggleSwitch _profEnabled;
         Label _profEmpty;
         int _editingProfileIndex = -1;
 
@@ -174,7 +174,7 @@ namespace DigitalVibrance.UI
             tbl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
             tbl.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 48));
 
-            _slider = new ModernTrackBar { Dock = DockStyle.Fill, Minimum = 0, Maximum = 100 };
+            _slider = new SliderBar { Dock = DockStyle.Fill, Minimum = 0, Maximum = 100 };
             _slider.ValueChanged += (s, e) => { _pctLabel.Text = _slider.Value + "%"; };
             _slider.MouseUp += (s, e) =>
             {
@@ -309,11 +309,11 @@ namespace DigitalVibrance.UI
             defRow.Controls.Add(new Label { Text = "default %", Font = Theme.FontReg(7f), ForeColor = Theme.TextSec, BackColor = Color.Transparent, AutoSize = true, Margin = new Padding(0, 4, 0, 0) });
             inner.Controls.Add(defRow);
 
-            _startupCb = new ModernCheckBox(); _startupCb.SetText("Run at startup");
+            _startupCb = new ToggleSwitch(); _startupCb.SetText("Run at startup");
             _startupCb.CheckedChanged += (s, e) => SettingsManager.SetAutoStart(_startupCb.Checked);
             inner.Controls.Add(_startupCb);
 
-            _hotkeyCb = new ModernCheckBox(); _hotkeyCb.SetText("Hotkeys C+A+1..4");
+            _hotkeyCb = new ToggleSwitch(); _hotkeyCb.SetText("Hotkeys C+A+1..4");
             _hotkeyCb.CheckedChanged += (s, e) =>
             {
                 SettingsManager.Current.EnableHotkeys = _hotkeyCb.Checked; SettingsManager.Save();
@@ -321,7 +321,7 @@ namespace DigitalVibrance.UI
             };
             inner.Controls.Add(_hotkeyCb);
 
-            _autoCb = new ModernCheckBox(); _autoCb.SetText("Auto-switch apps");
+            _autoCb = new ToggleSwitch(); _autoCb.SetText("Auto-switch apps");
             _autoCb.CheckedChanged += (s, e) =>
             {
                 SettingsManager.Current.AutoDetectApps = _autoCb.Checked; SettingsManager.Save();
@@ -478,7 +478,7 @@ namespace DigitalVibrance.UI
             playB.Click += (s, e) => { int idx = _profileList.SelectedIndex; if (idx >= 0) ProfileManager.ActivateProfile(idx); };
             actionRow.Controls.Add(playB);
 
-            _profEnabled = new ModernCheckBox();
+            _profEnabled = new ToggleSwitch();
             _profEnabled.SetText("Active");
             _profEnabled.Margin = new Padding(0, 0, 6, 0);
             actionRow.Controls.Add(_profEnabled);

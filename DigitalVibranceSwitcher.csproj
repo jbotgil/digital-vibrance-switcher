@@ -55,9 +55,9 @@
     <Compile Include="Core\GameDetector.cs" />
     <Compile Include="Core\InstalledAppScanner.cs" />
     <Compile Include="Core\HotkeyManager.cs" />
-    <Compile Include="UI\ModernTheme.cs" />
-    <Compile Include="UI\ModernCheckBox.cs" />
-    <Compile Include="UI\ModernTrackBar.cs" />
+    <Compile Include="UI\Theme.cs" />
+    <Compile Include="UI\ToggleSwitch.cs" />
+    <Compile Include="UI\SliderBar.cs" />
     <Compile Include="UI\AppPickerDialog.cs" />
     <Compile Include="UI\LoadingDialog.cs" />
     <Compile Include="UI\MainForm.cs" />
