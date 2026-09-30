@@ -50,15 +50,15 @@ namespace DigitalVibrance
                 WriteLog("Creating MainForm...");
                 var form = new MainForm();
 
+                TrayManager.Initialize(form);
                 if (!autoStart)
                 {
-                    TrayManager.Initialize(form);
                     WriteLog("Showing main form...");
                     form.Show();
                 }
                 else
                 {
-                    WriteLog("Auto-start mode — running as background process only");
+                    WriteLog("Auto-start mode — running in system tray");
                 }
 
                 WriteLog("Entering Application.Run()");

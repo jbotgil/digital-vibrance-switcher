@@ -35,8 +35,10 @@ namespace DigitalVibrance.UI
         {
             AutoScaleMode = AutoScaleMode.Dpi;
             MinimumSize = new Size(480, 500);
+            MaximumSize = new Size(640, 720);
             Size = new Size(640, 720);
-            FormBorderStyle = FormBorderStyle.Sizable;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen;
             BackColor = Theme.Bg;
             ForeColor = Theme.Text;
