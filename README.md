@@ -3,9 +3,9 @@
   <img src="https://img.shields.io/badge/Windows-10%2F11-00A4EF?style=for-the-badge&logo=windows" alt="Windows"/>
   <img src="https://img.shields.io/badge/NVIDIA-Required-76B900?style=for-the-badge&logo=nvidia" alt="NVIDIA"/>
   <br/>
-  <img src="https://img.shields.io/github/v/release/jbotgil/digital-vibrance-switcher?style=flat-square" alt="Release"/>
-  <img src="https://img.shields.io/github/stars/jbotgil/digital-vibrance-switcher?style=flat-square" alt="Stars"/>
-  <img src="https://img.shields.io/github/license/jbotgil/digital-vibrance-switcher?style=flat-square" alt="License"/>
+  <img src="https://img.shields.io/github/v/release/jbotgil/digital-vibrance-switcher?style=flat-square&v=2" alt="Release"/>
+  <img src="https://img.shields.io/github/stars/jbotgil/digital-vibrance-switcher?style=flat-square&v=2" alt="Stars"/>
+  <img src="https://img.shields.io/github/license/jbotgil/digital-vibrance-switcher?style=flat-square&v=2" alt="License"/>
 </div>
 
 <br/>
