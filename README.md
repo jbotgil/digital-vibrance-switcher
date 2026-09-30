@@ -13,7 +13,7 @@
 <h1 align="center">🎨 Digital Vibrance Switcher</h1>
 
 <div align="center">
-  <img src="docs/screenshot-main.png" alt="Main UI Screenshot" width="420"/>
+  <img src="Assets/screenshot-main.png" alt="Main UI Screenshot" width="420"/>
 </div>
 
 > ⚙️ **Instant NVIDIA Digital Vibrance control — no more waiting for the Control Panel.**
