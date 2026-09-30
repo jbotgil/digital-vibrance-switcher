@@ -10,21 +10,21 @@ namespace DigitalVibrance
     static class Program
     {
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             try
             {
                 WriteLog("=== Digital Vibrance Switcher START ===");
+
+                bool autoStart = args.Length > 0 && args[0] == "--hide";
+                if (autoStart)
+                    WriteLog("Launched via auto-start (--hide)");
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
                 WriteLog("Loading settings...");
                 SettingsManager.Load();
-
-                WriteLog("Forcing visible start...");
-                SettingsManager.Current.MinimizeToTrayOnStart = false;
-                SettingsManager.Save();
 
                 WriteLog("Initializing NVAPI...");
                 if (!VibranceController.Initialize())
@@ -49,10 +49,17 @@ namespace DigitalVibrance
 
                 WriteLog("Creating MainForm...");
                 var form = new MainForm();
-                TrayManager.Initialize(form);
 
-                WriteLog("Showing main form...");
-                form.Show();
+                if (!autoStart)
+                {
+                    TrayManager.Initialize(form);
+                    WriteLog("Showing main form...");
+                    form.Show();
+                }
+                else
+                {
+                    WriteLog("Auto-start mode — running as background process only");
+                }
 
                 WriteLog("Entering Application.Run()");
                 Application.Run();

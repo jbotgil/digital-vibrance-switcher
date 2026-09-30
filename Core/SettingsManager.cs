@@ -123,7 +123,7 @@ namespace DigitalVibrance.Core
                     if (key == null) return;
 
                     if (enable)
-                        key.SetValue("DigitalVibrance", "\"" + Application.ExecutablePath + "\"");
+                        key.SetValue("DigitalVibrance", "\"" + Application.ExecutablePath + "\" --hide");
                     else if (key.GetValue("DigitalVibrance") != null)
                         key.DeleteValue("DigitalVibrance");
                 }
