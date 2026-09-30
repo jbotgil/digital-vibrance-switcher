@@ -30,7 +30,7 @@
 
 ## 🔥 The Problem
 
-You're mid-game and the colors feel **washed out**. Or you're editing a photo and the saturation feels **off**. You know the drill:
+You're mid-game and the colors feel **washed out**. Or you're watching a movie and the skin tones look **unnatural**. You know the drill:
 
 1. Open **NVIDIA Control Panel** _(10-20 seconds just loading)_
 2. Navigate to "Adjust desktop color settings"
@@ -169,7 +169,7 @@ MIT — see [LICENSE](LICENSE).
 
 ## 🔥 El Problema
 
-Estás jugando y los colores se ven **apagados**. O estás editando una foto y la saturación **no termina de convencerte**. El ritual de siempre:
+Estás jugando y los colores se ven **apagados**. O estás viendo una película y los tonos de piel se ven **artificiales**. El ritual de siempre:
 
 1. Abrir el **Panel de Control de NVIDIA** _(10-20 segundos solo para cargar)_
 2. Ir a "Ajustar configuración de color del escritorio"
